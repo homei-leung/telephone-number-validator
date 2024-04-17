@@ -58,20 +58,18 @@ delBtn.addEventListener("click", (e) => delInput());
 //Check if input is valid when check-btn is pressed.
 function checkInput() {
     let input = userInput.value;
-    const regex = /^1?\s?[(]?[0-9]{3}[)]?\s?-?[0-9]{3}\s?-?[0-9]{4}$/g;
+    const regex = /^1?\s?(\(\d{3}\)|\d{3})\s?-?\d{3}\s?-?\d{4}$/;
     //If there is no value in #user-input, alert "Please provide a phone number"
     //Check if input contains acceptable US phone number formats using Regex.
     if (input === ""){
         alert("Please provide a phone number.");
     } else if (regex.test(input) === true) {
         //If valid, output message "Valid US number:" + input
-        resultMsg.textContent = `Valid US number: ${input}`;
-        //Show clearBtn
+        results.innerHTML = `<p>Valid US number: ${input}</p>`
         results.style.display = "block";
     } else {
         //If invalid, output message "Invalid US number:" + input
-        resultMsg.textContent = `Invalid US number: ${input}`;
-        //Show clearBtn
+        results.innerHTML = `<p>Invalid US number: ${input}</p>`
         results.style.display = "block";
     }
 }
@@ -82,7 +80,7 @@ checkBtn.addEventListener("click", (e) => {
 
 //Remove the contents of #results-div when the #clear-btn is clicked.
 clearBtn.addEventListener("click", (e) => {
-    resultMsg.textContent = "";
+    results.innerHTML = ``;
     results.style.display = "none";
     userInput.value = "";
 })
